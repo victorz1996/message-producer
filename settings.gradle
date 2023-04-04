@@ -1,0 +1,24 @@
+pluginManagement {
+    repositories {
+        //mavenLocal()
+        //maven { url '...' }
+        gradlePluginPortal()
+    }
+}
+
+rootProject.name = 'message-producer'
+
+include ':app-service'
+include ':model'
+include ':usecase'
+project(':app-service').projectDir = file('./applications/app-service')
+project(':model').projectDir = file('./domain/model')
+project(':usecase').projectDir = file('./domain/usecase')
+include ':async-message-sender'
+project(':async-message-sender').projectDir = file('./infrastructure/driven-adapters/async-message-sender')
+include ':reactive-web'
+project(':reactive-web').projectDir = file('./infrastructure/entry-points/reactive-web')
+include ':mq-rabbit'
+project(':mq-rabbit').projectDir = file('./infrastructure/driven-adapters/mq-rabbit')
+include ':mq'
+project(':mq').projectDir = file('./infrastructure/driven-adapters/mq')
